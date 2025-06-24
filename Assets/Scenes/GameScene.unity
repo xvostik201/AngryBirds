@@ -609,6 +609,7 @@ GameObject:
   - component: {fileID: 1701099441}
   - component: {fileID: 1701099443}
   - component: {fileID: 1701099442}
+  - component: {fileID: 1701099444}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Untagged
@@ -787,6 +788,19 @@ PolygonCollider2D:
       - {x: 0.315, y: -0.32999998}
       - {x: 0.39499998, y: -0.24}
   m_UseDelaunayMesh: 0
+--- !u!114 &1701099444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701099438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d124fbdf3a59a048b52a41f978d843d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deathSpeedThreshold: 5
 --- !u!1 &1839238237
 GameObject:
   m_ObjectHideFlags: 0
