@@ -1522,12 +1522,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Angry Birds - Pre-Chrome Characters_66
+      name: Pig0
       rect:
         serializedVersion: 2
-        x: 588
-        y: 283
-        width: 179
+        x: 587
+        y: 282
+        width: 79
         height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -3369,6 +3369,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Pig1
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 361
+        width: 79
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d838e7f6f1a05824b9d2a4b79c537261
+      internalID: 1393886760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -3493,7 +3514,6 @@ TextureImporter:
       Mobile - Angry Birds - Pre-Chrome Characters_63: 1509918907
       Mobile - Angry Birds - Pre-Chrome Characters_64: -1034735193
       Mobile - Angry Birds - Pre-Chrome Characters_65: -1892791588
-      Mobile - Angry Birds - Pre-Chrome Characters_66: 74016196
       Mobile - Angry Birds - Pre-Chrome Characters_67: -1254144757
       Mobile - Angry Birds - Pre-Chrome Characters_68: -663932590
       Mobile - Angry Birds - Pre-Chrome Characters_69: 1227409662
@@ -3530,6 +3550,8 @@ TextureImporter:
       Mobile - Angry Birds - Pre-Chrome Characters_97: 770675647
       Mobile - Angry Birds - Pre-Chrome Characters_98: -577527420
       Mobile - Angry Birds - Pre-Chrome Characters_99: -2007281922
+      Pig0: 74016196
+      Pig1: 1393886760
       RedBirdHit0: -871822342
       RedBirdHit1: -764691438
       RedBirdShoot: 1197360490
