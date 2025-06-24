@@ -1,41 +1,99 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    private bool _isDragging;
+    [SerializeField] private float _specialShootForce = 2f;
+    [SerializeField] private float _maxDragDistance = 2f;
+    [SerializeField] private float _gravityScale = 1f;
+    [SerializeField] private float _flightRotationThreshold = 0.1f;
 
-    void Start()
+    private bool _isActive = false;
+    private bool _hitGround = false;
+    private Rigidbody2D _rb;
+    private Slingshot _slingshot;
+    private Animator _animator;
+
+    public float SpecialShootForce => _specialShootForce;
+    public float GravityScale => _gravityScale;
+    public bool IsDragging { get; private set; }
+    public Rigidbody2D Rigidbody2D => _rb;
+
+    public void Initialize(Slingshot slingshot)
     {
-        
+        _slingshot = slingshot;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.gravityScale = 0f;
+        _rb.isKinematic = true;
+        _animator = GetComponent<Animator>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (_isDragging)
+        if (!_isActive && !_rb.isKinematic && !_hitGround)
         {
-            transform.position = GetMousePosition();
+            Vector2 vel = _rb.velocity;
+            if (vel.sqrMagnitude > _flightRotationThreshold * _flightRotationThreshold)
+            {
+                float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
         }
-    }
-
-    private Vector3 GetMousePosition()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 camMousePosition = Camera.main.ScreenToWorldPoint(mousePos);
-        camMousePosition.z = 0;
-        return camMousePosition;
     }
 
     private void OnMouseDown()
     {
-        _isDragging = true;
+        if (!_isActive) return;
+        IsDragging = true;
+        _rb.isKinematic = true;
+    }
+
+    private void OnMouseDrag()
+    {
+        if (!_isActive) return;
+
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorld.z = 0f;
+
+        Vector3 dir = mouseWorld - _slingshot.BirdShootPoint.position;
+        if (dir.magnitude > _maxDragDistance)
+            dir = dir.normalized * _maxDragDistance;
+
+        transform.position = _slingshot.BirdShootPoint.position + dir;
+        LookAtSlingshot();
     }
 
     private void OnMouseUp()
     {
-        _isDragging = false;
+        if (!_isActive) return;
+        IsDragging = false;
+        _rb.isKinematic = false;
+        _slingshot.Shoot(this);
     }
 
+    public void SetActiveForLaunch(bool active)
+    {
+        _isActive = active;
+        if (active)
+        {
+            _rb.velocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
+            _rb.gravityScale = 0f;
+            _rb.isKinematic = true;
+            _animator.enabled = true;
+        }
+    }
+
+    private void LookAtSlingshot()
+    {
+        Vector3 toSlingshot = _slingshot.BirdShootPoint.position - transform.position;
+        float angle = Mathf.Atan2(toSlingshot.y, toSlingshot.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        _animator.enabled = false;
+        _hitGround = true;
+    }
 }
