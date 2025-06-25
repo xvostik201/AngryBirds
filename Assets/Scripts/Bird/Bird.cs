@@ -4,6 +4,7 @@ public class Bird : MonoBehaviour
 {
     [SerializeField] private BirdConfig _config;
 
+    private TrailRenderer _trail;
     private Rigidbody2D _rb;
     private Slingshot _slingshot;
     private Animator _anim;
@@ -11,8 +12,8 @@ public class Bird : MonoBehaviour
 
     private int _collisionSoundsPlayed;
     private float _lastCollisionSoundTime;
-    [SerializeField] private float _collisionSoundCooldown = 0.1f; 
-    [SerializeField] private int _maxCollisionSounds = 3;          
+    [SerializeField] private float _collisionSoundCooldown = 0.1f;
+    [SerializeField] private int _maxCollisionSounds = 3;
 
     public float SpecialShootForce => _config.SpecialShootForce;
     public float GravityScale => _config.GravityScale;
@@ -24,9 +25,10 @@ public class Bird : MonoBehaviour
         _slingshot = slingshot;
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-
+        _trail = GetComponent<TrailRenderer>();
         _rb.gravityScale = 0f;
         _rb.isKinematic = true;
+        _trail.enabled = false;
     }
 
     private void Update()
@@ -34,7 +36,7 @@ public class Bird : MonoBehaviour
         if (!_isActive && !_rb.isKinematic && _isFlying)
             RotateAlongVelocity();
 
-        if (_isFlying && !_hasPressed && Input.GetMouseButtonDown(0))
+        if (_isFlying && !_hasPressed && Input.GetMouseButtonDown(0) && _config.TypeOfBird == BirdType.Yellow)
         {
             _hasPressed = true;
             _rb.AddForce(transform.right * _config.AdditionalForce, ForceMode2D.Impulse);
@@ -78,6 +80,7 @@ public class Bird : MonoBehaviour
         _rb.isKinematic = false;
         _isFlying = true;
         _slingshot.Shoot(this);
+        _trail.enabled = true;
         AudioManager.Instance.PlayRandomSFX(_config.FlyingClips);
     }
 
@@ -88,7 +91,7 @@ public class Bird : MonoBehaviour
         {
             _collisionSoundsPlayed = 0;
             _lastCollisionSoundTime = -Mathf.Infinity;
-
+            _trail.enabled = false;
             _rb.velocity = Vector2.zero;
             _rb.angularVelocity = 0f;
             _rb.gravityScale = 0f;
@@ -108,7 +111,6 @@ public class Bird : MonoBehaviour
     {
         _anim.enabled = false;
         _isFlying = false;
-
         if (_collisionSoundsPlayed < _maxCollisionSounds &&
             Time.time - _lastCollisionSoundTime >= _collisionSoundCooldown)
         {
