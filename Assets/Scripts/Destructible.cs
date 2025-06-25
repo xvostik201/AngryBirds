@@ -18,7 +18,7 @@ public abstract class Destructible : MonoBehaviour, IDestructible
         {
             Die();
         }
-        else
+        else if(relSpeed > 0.2f)
         {
             AudioManager.Instance.PlayRandomSFX(_config.ImpactClips);
         }
