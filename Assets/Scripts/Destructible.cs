@@ -12,9 +12,6 @@ public abstract class Destructible : MonoBehaviour, IDestructible
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<IDestructible>(out var other))
-            other.Die();
-
         float relSpeed = collision.relativeVelocity.magnitude;
         if (relSpeed > _deathSpeedThreshold)
             Die();
