@@ -14,7 +14,10 @@ public class Bird : MonoBehaviour
     private float _lastCollisionSoundTime;
     [SerializeField] private float _collisionSoundCooldown = 0.1f;
     [SerializeField] private int _maxCollisionSounds = 3;
+    [SerializeField] private Transform _birdLineRendererPosition;
+    private bool _hasReseted;
 
+    public Transform BirdLineRendererPosition => _birdLineRendererPosition;
     public float SpecialShootForce => _config.SpecialShootForce;
     public float GravityScale => _config.GravityScale;
     public bool IsDragging { get; private set; }
@@ -111,6 +114,12 @@ public class Bird : MonoBehaviour
     {
         _anim.enabled = false;
         _isFlying = false;
+
+        if(!_hasReseted)
+            CameraManager.Instance.ResetToInitial();
+
+        _hasReseted = true;
+
         if (_collisionSoundsPlayed < _maxCollisionSounds &&
             Time.time - _lastCollisionSoundTime >= _collisionSoundCooldown)
         {
