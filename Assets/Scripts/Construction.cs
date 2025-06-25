@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Construction : Destructible
 {
-    void Start()
-    {
-        
-    }
+    [SerializeField] private AudioClip[] _deathClips;
 
-    void Update()
+    public override void Die()
     {
-        
+        AudioManager.Instance.PlayRandomSFX(_deathClips);
+        ParticlePoolManager.Instance.PlayAnimationAt(transform);
+        base.Die();
     }
 }

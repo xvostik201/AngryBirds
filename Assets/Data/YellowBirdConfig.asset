@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78aae3834b7f1c44ebd18afdb1e9f403, type: 3}
   m_Name: YellowBirdConfig
   m_EditorClassIdentifier: 
-  TypeOfBird: 0
+  TypeOfBird: 1
   SpecialShootForce: 2
   GravityScale: 1
   FlightRotationThreshold: 0.1
