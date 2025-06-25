@@ -4,7 +4,6 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
     [SerializeField] private float _specialShootForce = 2f;
-    [SerializeField] private float _maxDragDistance = 2f;
     [SerializeField] private float _gravityScale = 1f;
     [SerializeField] private float _flightRotationThreshold = 0.1f;
 
@@ -56,8 +55,8 @@ public class Bird : MonoBehaviour
         mouseWorld.z = 0f;
 
         Vector3 dir = mouseWorld - _slingshot.BirdShootPoint.position;
-        if (dir.magnitude > _maxDragDistance)
-            dir = dir.normalized * _maxDragDistance;
+        if (dir.magnitude > _slingshot.MaxDragDistance)
+            dir = dir.normalized * _slingshot.MaxDragDistance;
 
         transform.position = _slingshot.BirdShootPoint.position + dir;
         LookAtSlingshot();

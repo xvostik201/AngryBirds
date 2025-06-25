@@ -1039,12 +1039,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Angry Birds - Pre-Chrome Characters_43
+      name: Cloud0
       rect:
         serializedVersion: 2
         x: 840
         y: 438
-        width: 167
+        width: 89
         height: 90
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1333,12 +1333,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mobile - Angry Birds - Pre-Chrome Characters_57
+      name: Cloud1
       rect:
         serializedVersion: 2
         x: 168
         y: 344
-        width: 132
+        width: 116
         height: 112
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -3390,6 +3390,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Cloud2
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 459
+        width: 116
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfef799ad3ad07c47b0b05ea36929eb1
+      internalID: 2051055585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud3
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 568
+        width: 128
+        height: 121
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6102ccf3f76b1814f98ebcc1bac9bff5
+      internalID: -1111917087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cloud4
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 689
+        width: 129
+        height: 124
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad9f8b738ba20145b760e3d922b4349
+      internalID: -87868114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -3401,6 +3464,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Cloud0: 2088662419
+      Cloud1: -161470253
+      Cloud2: 2051055585
+      Cloud3: -1111917087
+      Cloud4: -87868114
       Mobile - Angry Birds - Pre-Chrome Characters_0: -512286419
       Mobile - Angry Birds - Pre-Chrome Characters_1: 1979261612
       Mobile - Angry Birds - Pre-Chrome Characters_10: -1380963647
@@ -3489,7 +3557,6 @@ TextureImporter:
       Mobile - Angry Birds - Pre-Chrome Characters_40: 1126988078
       Mobile - Angry Birds - Pre-Chrome Characters_41: 2120408118
       Mobile - Angry Birds - Pre-Chrome Characters_42: -682550557
-      Mobile - Angry Birds - Pre-Chrome Characters_43: 2088662419
       Mobile - Angry Birds - Pre-Chrome Characters_44: -1783830082
       Mobile - Angry Birds - Pre-Chrome Characters_45: 566732677
       Mobile - Angry Birds - Pre-Chrome Characters_46: -1478946456
@@ -3504,7 +3571,6 @@ TextureImporter:
       Mobile - Angry Birds - Pre-Chrome Characters_54: -1130790198
       Mobile - Angry Birds - Pre-Chrome Characters_55: 1717272898
       Mobile - Angry Birds - Pre-Chrome Characters_56: -1086304104
-      Mobile - Angry Birds - Pre-Chrome Characters_57: -161470253
       Mobile - Angry Birds - Pre-Chrome Characters_58: -1589886500
       Mobile - Angry Birds - Pre-Chrome Characters_59: -1442113151
       Mobile - Angry Birds - Pre-Chrome Characters_6: -115572406

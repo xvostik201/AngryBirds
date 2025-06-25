@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _specialShootForce: 2
-  _maxDragDistance: 2
   _gravityScale: 1
   _flightRotationThreshold: 0.1
 --- !u!60 &4485423050784449307
@@ -392,5 +391,5 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0

@@ -204,4 +204,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d124fbdf3a59a048b52a41f978d843d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathSpeedThreshold: 6
+  _deathSpeedThreshold: 3

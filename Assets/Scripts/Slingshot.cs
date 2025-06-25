@@ -7,11 +7,14 @@ public class Slingshot : MonoBehaviour
     [SerializeField] private Transform _birdShootPoint;
     [SerializeField] private Bird[] _allBirdsToLevel;
     [SerializeField] private float _defaultShootForce = 5f;
+    [SerializeField] private float _maxDragDistance = 3f;
+
 
     private int _currentIndex = 0;
     private Bird _currentBird;
 
     public Transform BirdShootPoint => _birdShootPoint;
+    public float MaxDragDistance => _maxDragDistance;
 
     private void Start()
     {
