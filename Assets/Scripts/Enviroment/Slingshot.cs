@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Slingshot : MonoBehaviour
@@ -8,10 +6,18 @@ public class Slingshot : MonoBehaviour
     public static event Action<Bird> OnBirdLaunched;
 
     [SerializeField] private LineRenderer[] _lineRenderers;
+    [SerializeField] private LineRenderer _trajectoryRenderer;
+
     [SerializeField] private Transform _birdShootPoint;
+
     [SerializeField] private Bird[] _allBirdsToLevel;
+
     [SerializeField] private float _defaultShootForce = 5f;
+
     [SerializeField] private float _maxDragDistance = 3f;
+
+    [SerializeField] private int _trajectoryPoints = 30;
+    [SerializeField] private float _timeStep = 0.1f;
 
     private int _currentIndex = 0;
     private Bird _currentBird;
@@ -27,6 +33,9 @@ public class Slingshot : MonoBehaviour
             bird.Initialize(this);
 
         SpawnNextBird();
+
+        _trajectoryRenderer.positionCount = _trajectoryPoints;
+        _trajectoryRenderer.enabled = false;
     }
 
     private void Update()
@@ -39,12 +48,34 @@ public class Slingshot : MonoBehaviour
                 _lineRenderers[i].SetPosition(0, _lineRenderers[i].transform.position);
                 _lineRenderers[i].SetPosition(1, _currentBird.BirdLineRendererPosition.position);
             }
+
+            DrawTrajectory();
         }
         else
         {
             foreach (var lr in _lineRenderers)
                 lr.enabled = false;
+
+            _trajectoryRenderer.enabled = false;
         }
+    }
+
+    private void DrawTrajectory()
+    {
+        Vector3 startPos = _birdShootPoint.position;
+        Vector3 dir = (_currentBird.transform.position - startPos).normalized;
+        float dist = Vector3.Distance(_currentBird.transform.position, startPos);
+        Vector3 velocity = -dir * _defaultShootForce * dist * _currentBird.SpecialShootForce;
+        Vector3 gravity = Physics2D.gravity;
+
+        for (int i = 0; i < _trajectoryPoints; i++)
+        {
+            float t = i * _timeStep;
+            Vector3 point = startPos + velocity * t + .65f * (Vector3)gravity * t * t;
+            _trajectoryRenderer.SetPosition(i, point);
+        }
+
+        _trajectoryRenderer.enabled = true;
     }
 
     private void SpawnNextBird()
@@ -75,8 +106,9 @@ public class Slingshot : MonoBehaviour
         );
         bird.Rigidbody2D.gravityScale = bird.GravityScale;
 
-        _currentIndex++;
+        _trajectoryRenderer.enabled = false;
 
+        _currentIndex++;
         Invoke(nameof(SpawnNextBird), 1.5f);
     }
 }

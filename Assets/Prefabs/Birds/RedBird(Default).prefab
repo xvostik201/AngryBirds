@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: -7.278, y: -3.973, z: 0}
   m_LocalScale: {x: 0.06, y: 0.059999995, z: 0.059999995}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 8059433889413884658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7634557724186560697
@@ -125,6 +126,7 @@ MonoBehaviour:
   _config: {fileID: 11400000, guid: 68495c2ea51951e47b471c8f8018553f, type: 2}
   _collisionSoundCooldown: 0.5
   _maxCollisionSounds: 3
+  _birdLineRendererPosition: {fileID: 8059433889413884658}
 --- !u!60 &4485423050784449307
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -507,3 +509,34 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!1 &8530212352022247324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8059433889413884658}
+  m_Layer: 0
+  m_Name: birdLineRenPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8059433889413884658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530212352022247324}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.66, y: -1.66, z: 0}
+  m_LocalScale: {x: 16.666668, y: 16.666668, z: 16.666668}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8366820192728589599}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
