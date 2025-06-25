@@ -171,7 +171,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d716378c27ed5c40b56f17de5a59eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _deathSpeedThreshold: 2
-  _deathClips:
-  - {fileID: 8300000, guid: 28a33550b776b1943810212b769ea91b, type: 3}
-  - {fileID: 8300000, guid: e04aa3edd04d91541a7e3e64faad48b2, type: 3}
+  _config: {fileID: 11400000, guid: 23f7a1f189ed2e24abeadb7d73c5392e, type: 2}

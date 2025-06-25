@@ -2,7 +2,7 @@
 
 public abstract class Destructible : MonoBehaviour, IDestructible
 {
-    [SerializeField] protected float _deathSpeedThreshold = 2f;
+    [SerializeField] private DestructibleConfig _config;
 
     protected Rigidbody2D _rb;
 
@@ -13,15 +13,21 @@ public abstract class Destructible : MonoBehaviour, IDestructible
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-
         float relSpeed = collision.relativeVelocity.magnitude;
-        Debug.Log(relSpeed);
-        if (relSpeed > _deathSpeedThreshold)
+        if (relSpeed > _config.BreakForce)
+        {
             Die();
+        }
+        else
+        {
+            AudioManager.Instance.PlayRandomSFX(_config.ImpactClips);
+        }
     }
 
     public virtual void Die()
     {
+        AudioManager.Instance.PlayRandomSFX(_config.DeathClips);
+        ParticlePoolManager.Instance.PlayAnimationAt(transform);
         Destroy(gameObject);
     }
 }

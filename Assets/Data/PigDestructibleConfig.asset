@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1aceae0cbfec6c45890d98acb343428, type: 3}
+  m_Name: PigDestructibleConfig
+  m_EditorClassIdentifier: 
+  Type: 2
+  BreakForce: 5
+  ImpactClips:
+  - {fileID: 8300000, guid: 4bfec5769c412994c911d8cf90688a5b, type: 3}
+  - {fileID: 8300000, guid: 31df4a21bb08a174590354e1ce50c79a, type: 3}
+  - {fileID: 8300000, guid: f81cc507d8bb4034d87ebfb112f4aafa, type: 3}
+  DeathClips:
+  - {fileID: 8300000, guid: 98da863e840c0b541906f683cb9a599f, type: 3}
+  - {fileID: 8300000, guid: 2e4ebbc7fb4beb146a99b65d373e00e1, type: 3}
+  - {fileID: 8300000, guid: a343ea59a2605094ebe14833562a3437, type: 3}

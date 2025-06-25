@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _sfxSource;
     [SerializeField] private AudioSource _musicSource;
 
-    [Header("Default Music Clip (will play on Start)")]
+    [Header("Default Music Clip")]
     [SerializeField] private AudioClip _defaultMusicClip;
 
     [Header("Volume Settings (0–1)")]

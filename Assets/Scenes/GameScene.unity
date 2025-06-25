@@ -795,9 +795,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfxSource: {fileID: 765963676}
   _musicSource: {fileID: 765963679}
-  _defaultMusicClip: {fileID: 0}
-  _sfxVolume: 1
-  _musicVolume: 1
+  _defaultMusicClip: {fileID: 8300000, guid: aaea07b0be160634fa88631f42ab9178, type: 3}
+  _sfxVolume: 0.5
+  _musicVolume: 0.15
 --- !u!4 &765963678
 Transform:
   m_ObjectHideFlags: 0
