@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    [SerializeField] private BirdType _typeOfBird;
+
     [SerializeField] private float _specialShootForce = 2f;
     [SerializeField] private float _gravityScale = 1f;
     [SerializeField] private float _flightRotationThreshold = 0.1f;
 
+    [Header("Yellow bird settings")]
+    [SerializeField] private float _additionalForce = 1.5f;
+    [SerializeField] private bool _hasPressed = false;
+
     private bool _isActive = false;
-    private bool _hitGround = false;
+    private bool _isFlying = false;
     private Rigidbody2D _rb;
     private Slingshot _slingshot;
     private Animator _animator;
@@ -29,7 +35,7 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
-        if (!_isActive && !_rb.isKinematic && !_hitGround)
+        if (!_isActive && !_rb.isKinematic && _isFlying)
         {
             Vector2 vel = _rb.velocity;
             if (vel.sqrMagnitude > _flightRotationThreshold * _flightRotationThreshold)
@@ -37,6 +43,11 @@ public class Bird : MonoBehaviour
                 float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
+        }
+        if (_isFlying && !_hasPressed && Input.GetMouseButtonDown(0))
+        {
+            _hasPressed = true;
+            _rb.AddForce(transform.right * _additionalForce, ForceMode2D.Impulse);
         }
     }
 
@@ -67,6 +78,7 @@ public class Bird : MonoBehaviour
         if (!_isActive) return;
         IsDragging = false;
         _rb.isKinematic = false;
+        _isFlying = true;
         _slingshot.Shoot(this);
     }
 
@@ -93,6 +105,6 @@ public class Bird : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         _animator.enabled = false;
-        _hitGround = true;
+        _isFlying = false;
     }
 }
