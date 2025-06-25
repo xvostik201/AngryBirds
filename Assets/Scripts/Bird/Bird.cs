@@ -1,15 +1,18 @@
-﻿// Bird.cs
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Bird : MonoBehaviour
 {
-    [SerializeField] private BirdConfig _config; 
+    [SerializeField] private BirdConfig _config;
 
     private Rigidbody2D _rb;
     private Slingshot _slingshot;
     private Animator _anim;
     private bool _isActive, _isFlying, _hasPressed;
+
+    private int _collisionSoundsPlayed;
+    private float _lastCollisionSoundTime;
+    [SerializeField] private float _collisionSoundCooldown = 0.1f; 
+    [SerializeField] private int _maxCollisionSounds = 3;          
 
     public float SpecialShootForce => _config.SpecialShootForce;
     public float GravityScale => _config.GravityScale;
@@ -83,6 +86,9 @@ public class Bird : MonoBehaviour
         _isActive = active;
         if (active)
         {
+            _collisionSoundsPlayed = 0;
+            _lastCollisionSoundTime = -Mathf.Infinity;
+
             _rb.velocity = Vector2.zero;
             _rb.angularVelocity = 0f;
             _rb.gravityScale = 0f;
@@ -102,6 +108,13 @@ public class Bird : MonoBehaviour
     {
         _anim.enabled = false;
         _isFlying = false;
-        AudioManager.Instance.PlayRandomSFX(_config.CollisionClips);
+
+        if (_collisionSoundsPlayed < _maxCollisionSounds &&
+            Time.time - _lastCollisionSoundTime >= _collisionSoundCooldown)
+        {
+            AudioManager.Instance.PlayRandomSFX(_config.CollisionClips);
+            _collisionSoundsPlayed++;
+            _lastCollisionSoundTime = Time.time;
+        }
     }
 }

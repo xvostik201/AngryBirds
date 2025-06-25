@@ -17,6 +17,9 @@ MonoBehaviour:
   GravityScale: 1
   FlightRotationThreshold: 0.1
   AdditionalForce: 1.5
-  FlyingClips: []
-  CollisionClips: []
+  FlyingClips:
+  - {fileID: 8300000, guid: b33450b74b81def4bba31318adf51bc4, type: 3}
+  CollisionClips:
+  - {fileID: 8300000, guid: a661db36063dbe14e81fd01b86dd0c47, type: 3}
+  - {fileID: 8300000, guid: 84c68447b49122442a882a0dd8d28b3a, type: 3}
   SpecialAbilityClip: {fileID: 0}

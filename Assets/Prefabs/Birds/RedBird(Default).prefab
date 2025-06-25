@@ -121,9 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5041c2096035c642aa9f295eba297c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _specialShootForce: 2
-  _gravityScale: 1
-  _flightRotationThreshold: 0.1
+  _config: {fileID: 11400000, guid: 68495c2ea51951e47b471c8f8018553f, type: 2}
 --- !u!60 &4485423050784449307
 PolygonCollider2D:
   m_ObjectHideFlags: 0
