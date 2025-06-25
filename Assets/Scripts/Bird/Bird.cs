@@ -1,26 +1,18 @@
-﻿using System;
+﻿// Bird.cs
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Bird : MonoBehaviour
 {
-    [SerializeField] private BirdType _typeOfBird;
+    [SerializeField] private BirdConfig _config; 
 
-    [SerializeField] private float _specialShootForce = 2f;
-    [SerializeField] private float _gravityScale = 1f;
-    [SerializeField] private float _flightRotationThreshold = 0.1f;
-
-    [Header("Yellow bird settings")]
-    [SerializeField] private float _additionalForce = 1.5f;
-    [SerializeField] private bool _hasPressed = false;
-
-    private bool _isActive = false;
-    private bool _isFlying = false;
     private Rigidbody2D _rb;
     private Slingshot _slingshot;
-    private Animator _animator;
+    private Animator _anim;
+    private bool _isActive, _isFlying, _hasPressed;
 
-    public float SpecialShootForce => _specialShootForce;
-    public float GravityScale => _gravityScale;
+    public float SpecialShootForce => _config.SpecialShootForce;
+    public float GravityScale => _config.GravityScale;
     public bool IsDragging { get; private set; }
     public Rigidbody2D Rigidbody2D => _rb;
 
@@ -28,26 +20,32 @@ public class Bird : MonoBehaviour
     {
         _slingshot = slingshot;
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+
         _rb.gravityScale = 0f;
         _rb.isKinematic = true;
-        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (!_isActive && !_rb.isKinematic && _isFlying)
-        {
-            Vector2 vel = _rb.velocity;
-            if (vel.sqrMagnitude > _flightRotationThreshold * _flightRotationThreshold)
-            {
-                float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            }
-        }
+            RotateAlongVelocity();
+
         if (_isFlying && !_hasPressed && Input.GetMouseButtonDown(0))
         {
             _hasPressed = true;
-            _rb.AddForce(transform.right * _additionalForce, ForceMode2D.Impulse);
+            _rb.AddForce(transform.right * _config.AdditionalForce, ForceMode2D.Impulse);
+            AudioManager.Instance.PlaySFX(_config.SpecialAbilityClip);
+        }
+    }
+
+    private void RotateAlongVelocity()
+    {
+        var v = _rb.velocity;
+        if (v.sqrMagnitude > _config.FlightRotationThreshold * _config.FlightRotationThreshold)
+        {
+            float ang = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, ang);
         }
     }
 
@@ -61,14 +59,11 @@ public class Bird : MonoBehaviour
     private void OnMouseDrag()
     {
         if (!_isActive) return;
-
-        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorld.z = 0f;
-
-        Vector3 dir = mouseWorld - _slingshot.BirdShootPoint.position;
+        Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        m.z = 0;
+        var dir = m - _slingshot.BirdShootPoint.position;
         if (dir.magnitude > _slingshot.MaxDragDistance)
             dir = dir.normalized * _slingshot.MaxDragDistance;
-
         transform.position = _slingshot.BirdShootPoint.position + dir;
         LookAtSlingshot();
     }
@@ -80,6 +75,7 @@ public class Bird : MonoBehaviour
         _rb.isKinematic = false;
         _isFlying = true;
         _slingshot.Shoot(this);
+        AudioManager.Instance.PlayRandomSFX(_config.FlyingClips);
     }
 
     public void SetActiveForLaunch(bool active)
@@ -91,20 +87,21 @@ public class Bird : MonoBehaviour
             _rb.angularVelocity = 0f;
             _rb.gravityScale = 0f;
             _rb.isKinematic = true;
-            _animator.enabled = true;
+            _anim.enabled = true;
         }
     }
 
     private void LookAtSlingshot()
     {
-        Vector3 toSlingshot = _slingshot.BirdShootPoint.position - transform.position;
-        float angle = Mathf.Atan2(toSlingshot.y, toSlingshot.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        var to = _slingshot.BirdShootPoint.position - transform.position;
+        float ang = Mathf.Atan2(to.y, to.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, ang);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        _animator.enabled = false;
+        _anim.enabled = false;
         _isFlying = false;
+        AudioManager.Instance.PlayRandomSFX(_config.CollisionClips);
     }
 }
