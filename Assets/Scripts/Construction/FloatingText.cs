@@ -14,8 +14,12 @@ public class FloatingText : MonoBehaviour
     private void Awake()
     {
         _text = GetComponent<TMP_Text>();
-        _startColor = _text.color;
         _startPos = transform.localPosition;
+    }
+
+    public void SetColor(Color startColor)
+    {
+        _startColor = startColor;
     }
 
     private void OnEnable()

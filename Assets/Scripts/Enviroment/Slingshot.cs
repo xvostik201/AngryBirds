@@ -108,6 +108,8 @@ public class Slingshot : MonoBehaviour
 
         _trajectoryRenderer.enabled = false;
 
+        GameManager.Instance.OnBirdLaunched();
+
         _currentIndex++;
         Invoke(nameof(SpawnNextBird), 1.5f);
     }

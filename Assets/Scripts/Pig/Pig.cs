@@ -5,5 +5,9 @@ using UnityEngine;
 
 public class Pig : Destructible
 {
-    
+    public override void Die()
+    {
+        GameManager.Instance.OnPigDied();
+        base.Die();
+    }
 }

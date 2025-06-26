@@ -829,7 +829,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons (1)-Photoroom_33
+      name: exit
       rect:
         serializedVersion: 2
         x: 1025
@@ -3678,7 +3678,6 @@ TextureImporter:
       Buttons (1)-Photoroom_30: 1594233017
       Buttons (1)-Photoroom_31: -186310252
       Buttons (1)-Photoroom_32: 1909497807
-      Buttons (1)-Photoroom_33: -398852605
       Buttons (1)-Photoroom_34: -853229700
       Buttons (1)-Photoroom_35: 1517705379
       Buttons (1)-Photoroom_36: 145191627
@@ -3754,6 +3753,7 @@ TextureImporter:
       ResetScene: -243873294
       SoundOff: 1174699261
       SoundOn: -1045540246
+      exit: -398852605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

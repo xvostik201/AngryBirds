@@ -15,6 +15,7 @@ MonoBehaviour:
   Type: 0
   BreakForce: 2
   Reward: 3000
+  TextColor: {r: 0.8941177, g: 0.9725491, b: 0.9843138, a: 1}
   ImpactClips:
   - {fileID: 8300000, guid: ac85f97a5e789f04fb33b27eb0bb8b9e, type: 3}
   - {fileID: 8300000, guid: 5a4bb0534009ddd4d8560fc31124a7cf, type: 3}

@@ -38,6 +38,8 @@ public abstract class Destructible : MonoBehaviour, IDestructible
                 Quaternion.identity
             );
 
+            FloatingText flText = textGO.GetComponent<FloatingText>();
+            flText.SetColor(_config.TextColor);
             var tmp = textGO.GetComponent<TMP_Text>();
             if (tmp != null)
                 tmp.text = _config.Reward.ToString();
