@@ -15,12 +15,9 @@ public class AudioManager : MonoBehaviour
     [Header("Volume Settings (0–1)")]
     [Range(0f, 1f)][SerializeField] private float _sfxVolume = 1f;
     [Range(0f, 1f)][SerializeField] private float _musicVolume = 1f;
-    
-    private string KEY_MUSIC_MUTED = "MusicMuted";
-    private string KEY_SFX_MUTED = "SfxMuted";
 
-    public string MusicKey => KEY_MUSIC_MUTED;
-    public string SFXKey => KEY_SFX_MUTED;
+    public const string MusicKey = "MusicMuted";
+    public const string SfxKey = "SfxMuted";
 
     private void Awake()
     {
@@ -38,10 +35,10 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey(KEY_MUSIC_MUTED) && PlayerPrefs.HasKey(KEY_SFX_MUTED))
+        if (PlayerPrefs.HasKey(MusicKey) && PlayerPrefs.HasKey(SfxKey))
         {
-            bool musicMuted = PlayerPrefs.GetInt(KEY_MUSIC_MUTED) == 1;
-            bool sfxMuted = PlayerPrefs.GetInt(KEY_SFX_MUTED) == 1;
+            bool musicMuted = PlayerPrefs.GetInt(MusicKey) == 1;
+            bool sfxMuted = PlayerPrefs.GetInt(SfxKey) == 1;
             ApplyMute(musicMuted, sfxMuted);
         }
         
@@ -54,8 +51,8 @@ public class AudioManager : MonoBehaviour
         SetMusicMute(muteMusic);
         SetSFXMute(muteSfx);
 
-        PlayerPrefs.SetInt(KEY_MUSIC_MUTED, muteMusic ? 1 : 0);
-        PlayerPrefs.SetInt(KEY_SFX_MUTED, muteSfx ? 1 : 0);
+        PlayerPrefs.SetInt(MusicKey, muteMusic ? 1 : 0);
+        PlayerPrefs.SetInt(SfxKey, muteSfx ? 1 : 0);
         PlayerPrefs.Save();
     }
     public void PlaySFX(AudioClip clip)

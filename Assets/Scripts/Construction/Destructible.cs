@@ -20,7 +20,7 @@ public abstract class Destructible : MonoBehaviour, IDestructible
         {
             Die();
         }
-        else if(relSpeed > 0.2f)
+        else if (relSpeed > 0.2f)
         {
             AudioManager.Instance.PlayRandomSFX(_config.ImpactClips);
         }
@@ -30,9 +30,21 @@ public abstract class Destructible : MonoBehaviour, IDestructible
     {
         AudioManager.Instance.PlayRandomSFX(_config.DeathClips);
 
-        GameObject textGO = Instantiate(_additionalTextPrefab, transform.position, Quaternion.identity);
-        textGO.GetComponent<TextMeshPro>().text = _config.Reward.ToString();
-        
+        if (_additionalTextPrefab != null)
+        {
+            GameObject textGO = Instantiate(
+                _additionalTextPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+
+            var tmp = textGO.GetComponent<TMP_Text>();
+            if (tmp != null)
+                tmp.text = _config.Reward.ToString();
+
+        }
+
+        GameUI.Instance.AddScore(_config.Reward);
         ParticlePoolManager.Instance.PlayAnimationAt(transform);
         Destroy(gameObject);
     }

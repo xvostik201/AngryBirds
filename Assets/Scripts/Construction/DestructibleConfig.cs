@@ -9,3 +9,4 @@ public class DestructibleConfig : ScriptableObject
     public AudioClip[] ImpactClips;
     public AudioClip[] DeathClips;
 }
+
