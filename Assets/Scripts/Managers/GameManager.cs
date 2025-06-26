@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     private bool _gameEnded;
     private int _birdsLeft;
+    private int _pigsLeft;
 
     private void Awake()
     {
@@ -23,13 +24,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _birdsLeft = FindObjectsOfType<Bird>().Length;
+        _pigsLeft = FindObjectsOfType<Bird>().Length;
     }
 
     public void OnPigDied()
     {
+        _pigsLeft--;
         if (_gameEnded) return;
-        _gameEnded = true;
-        Lose();
+
+        if (_pigsLeft <= 0)
+        {
+            _gameEnded = true;
+            Win();
+        }
     }
 
     public void OnBirdLaunched()
@@ -63,7 +70,7 @@ public class GameManager : MonoBehaviour
         if (!_gameEnded)
         {
             _gameEnded = true;
-            Win();
+            Lose();
         }
     }
 
