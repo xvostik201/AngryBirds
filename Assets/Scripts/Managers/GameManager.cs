@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _birdsLeft = FindObjectsOfType<Bird>().Length;
-        _pigsLeft = FindObjectsOfType<Bird>().Length;
+        _pigsLeft = FindObjectsOfType<Pig>().Length;
     }
 
     public void OnPigDied()
