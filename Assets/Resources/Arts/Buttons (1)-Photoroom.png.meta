@@ -3562,8 +3562,8 @@ TextureImporter:
       name: SoundOff
       rect:
         serializedVersion: 2
-        x: 1206
-        y: 4
+        x: 1203
+        y: 5
         width: 60
         height: 58
       alignment: 0

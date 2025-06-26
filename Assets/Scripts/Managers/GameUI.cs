@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameUI : MonoBehaviour
 {
@@ -14,13 +12,34 @@ public class GameUI : MonoBehaviour
 
     [SerializeField] private Sprite _muteOff;
     [SerializeField] private Sprite _muteOn;
-    void Start()
+
+    private Image _muteButtonImage;
+
+    private void Awake()
     {
-        _reloadSceneButton.onClick.AddListener(() => SceneLoader.LoadScene(-1));
+        _muteButtonImage = _muteGameButton.GetComponent<Image>();
     }
 
-    void Update()
+    private void Start()
     {
-        
+        _reloadSceneButton.onClick.AddListener(() => SceneLoader.LoadScene(-1));
+        _muteGameButton.onClick.AddListener(TryToMute);
+
+        bool isMuted = PlayerPrefs.GetInt(AudioManager.Instance.MusicKey, 0) == 1;
+        _muteButtonImage.sprite = isMuted ? _muteOn : _muteOff;
+    }
+
+    private void TryToMute()
+    {
+        bool currentlyMuted = (_muteButtonImage.sprite == _muteOn);
+        bool newMuteState = !currentlyMuted;
+
+        AudioManager.Instance.ApplyMute(newMuteState, newMuteState);
+
+        _muteButtonImage.sprite = newMuteState ? _muteOn : _muteOff;
+    }
+
+    private void Update()
+    {
     }
 }
