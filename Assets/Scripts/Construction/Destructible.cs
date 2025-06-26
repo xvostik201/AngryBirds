@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public abstract class Destructible : MonoBehaviour, IDestructible
 {
     [SerializeField] private DestructibleConfig _config;
+    [SerializeField] private GameObject _additionalTextPrefab;
 
     protected Rigidbody2D _rb;
 
@@ -27,6 +29,10 @@ public abstract class Destructible : MonoBehaviour, IDestructible
     public virtual void Die()
     {
         AudioManager.Instance.PlayRandomSFX(_config.DeathClips);
+
+        GameObject textGO = Instantiate(_additionalTextPrefab, transform.position, Quaternion.identity);
+        textGO.GetComponent<TextMeshPro>().text = _config.Reward.ToString();
+        
         ParticlePoolManager.Instance.PlayAnimationAt(transform);
         Destroy(gameObject);
     }

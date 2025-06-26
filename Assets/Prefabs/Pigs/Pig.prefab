@@ -205,4 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 07416a48838097146808dbb598585750, type: 2}
-  _deathClips: []
+  _additionalTextPrefab: {fileID: 2526307559118095070, guid: 9dc0e54510fe8104a985cf1c59d0b2e4, type: 3}

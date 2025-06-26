@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   BreakForce: 5
+  Reward: 4000
   ImpactClips:
   - {fileID: 8300000, guid: 4bfec5769c412994c911d8cf90688a5b, type: 3}
   - {fileID: 8300000, guid: 31df4a21bb08a174590354e1ce50c79a, type: 3}

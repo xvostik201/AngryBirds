@@ -172,3 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: 23f7a1f189ed2e24abeadb7d73c5392e, type: 2}
+  _additionalTextPrefab: {fileID: 2526307559118095070, guid: 9dc0e54510fe8104a985cf1c59d0b2e4, type: 3}
