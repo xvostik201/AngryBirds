@@ -27,6 +27,7 @@ public class GameUI : BaseScreen
         }
         Instance = this;
 
+        _scoreText.text = _displayedScore.ToString();
         _muteImage = _muteGameButton.GetComponent<Image>();
     }
 

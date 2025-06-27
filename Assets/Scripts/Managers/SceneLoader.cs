@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -6,11 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static void LoadScene(int sceneToLoad)
+    public static void LoadScene(int sceneToLoad = 0, bool loadCurrentScene = false, bool loadNextScene = false)
     {
-        if(sceneToLoad == -1)
-            LoadScene(SceneManager.GetActiveScene().buildIndex);
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        int targetIndex;
+
+        if (loadCurrentScene)
+        {
+            targetIndex = currentIndex;
+        }
+        else if (loadNextScene)
+        {
+            targetIndex = currentIndex + 1;
+        }
         else
-            SceneManager.LoadScene(sceneToLoad);
+        {
+            targetIndex = sceneToLoad >= 0
+                ? sceneToLoad
+                : currentIndex;
+        }
+
+        SceneManager.LoadScene(targetIndex);
     }
 }

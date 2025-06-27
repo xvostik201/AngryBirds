@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -35,7 +34,7 @@ public class GameManager : MonoBehaviour
         if (_pigsLeft <= 0)
         {
             _gameEnded = true;
-            Win();
+            Invoke(nameof(Win), 2f);
         }
     }
 
@@ -77,6 +76,7 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         Debug.Log("WIN!");
+        SceneLoader.LoadScene(-1, false, true);
     }
 
     private void Lose()
