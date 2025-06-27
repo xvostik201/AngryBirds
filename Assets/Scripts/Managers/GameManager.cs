@@ -76,11 +76,12 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         Debug.Log("WIN!");
-        SceneLoader.LoadScene(-1, false, true);
+        GameUI.Instance.ActivateStatePanel(true);
     }
 
     private void Lose()
     {
+        GameUI.Instance.ActivateStatePanel(false);
         Debug.Log("LOSE!");
     }
 }

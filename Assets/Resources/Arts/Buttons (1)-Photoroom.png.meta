@@ -2656,7 +2656,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons (1)-Photoroom_120
+      name: continue
       rect:
         serializedVersion: 2
         x: 1143
@@ -2950,7 +2950,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons (1)-Photoroom_134
+      name: nextl
       rect:
         serializedVersion: 2
         x: 1039
@@ -2971,7 +2971,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons (1)-Photoroom_135
+      name: Pause
       rect:
         serializedVersion: 2
         x: 1143
@@ -3615,7 +3615,6 @@ TextureImporter:
       Buttons (1)-Photoroom_118: -1195606929
       Buttons (1)-Photoroom_119: -549315092
       Buttons (1)-Photoroom_12: 130373390
-      Buttons (1)-Photoroom_120: -34856476
       Buttons (1)-Photoroom_121: -2035257418
       Buttons (1)-Photoroom_122: 1170295586
       Buttons (1)-Photoroom_123: 1067179526
@@ -3629,8 +3628,6 @@ TextureImporter:
       Buttons (1)-Photoroom_130: -160760138
       Buttons (1)-Photoroom_131: -1958146112
       Buttons (1)-Photoroom_132: -1596653834
-      Buttons (1)-Photoroom_134: 662638765
-      Buttons (1)-Photoroom_135: -1877087572
       Buttons (1)-Photoroom_136: -335005086
       Buttons (1)-Photoroom_137: -1902938867
       Buttons (1)-Photoroom_138: -709159936
@@ -3749,11 +3746,14 @@ TextureImporter:
       Buttons (1)-Photoroom_97: 416080603
       Buttons (1)-Photoroom_98: -396946377
       Buttons (1)-Photoroom_99: -1438103330
+      Pause: -1877087572
       PlayButton: -2123909451
       ResetScene: -243873294
       SoundOff: 1174699261
       SoundOn: -1045540246
+      continue: -34856476
       exit: -398852605
+      nextl: 662638765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

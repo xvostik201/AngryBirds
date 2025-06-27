@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour
     private Rigidbody2D _rb;
     private Slingshot _slingshot;
     private Animator _anim;
+    private Collider2D _collider;
     private bool _isActive, _isFlying, _hasPressed;
 
     private int _collisionSoundsPlayed;
@@ -32,6 +33,7 @@ public class Bird : MonoBehaviour
         _rb.gravityScale = 0f;
         _rb.isKinematic = true;
         _trail.enabled = false;
+        _collider = GetComponent<Collider2D>();
     }
 
     private void Update()
@@ -59,14 +61,15 @@ public class Bird : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!_isActive) return;
+        if (!_isActive || TimeManager.GetTimeScale() == 0f) return;
         IsDragging = true;
         _rb.isKinematic = true;
+        _collider.enabled = false;
     }
 
     private void OnMouseDrag()
     {
-        if (!_isActive) return;
+        if (!_isActive || TimeManager.GetTimeScale() == 0f) return;
         Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         m.z = 0;
         var dir = m - _slingshot.BirdShootPoint.position;
@@ -78,13 +81,19 @@ public class Bird : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (!_isActive) return;
+        if (!_isActive || TimeManager.GetTimeScale() == 0f) return;
         IsDragging = false;
-        _rb.isKinematic = false;
         _isFlying = true;
+        _rb.isKinematic = false;
         _slingshot.Shoot(this);
         _trail.enabled = true;
+        Invoke(nameof(ActivateCollider), .2f);
         AudioManager.Instance.PlayRandomSFX(_config.FlyingClips);
+    }
+
+    private void ActivateCollider()
+    {
+        _collider.enabled = true;
     }
 
     public void SetActiveForLaunch(bool active)

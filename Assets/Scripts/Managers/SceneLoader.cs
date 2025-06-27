@@ -26,6 +26,8 @@ public class SceneLoader : MonoBehaviour
                 : currentIndex;
         }
 
+        TimeManager.ChangeTimeScale(1f);
+
         SceneManager.LoadScene(targetIndex);
     }
 }
