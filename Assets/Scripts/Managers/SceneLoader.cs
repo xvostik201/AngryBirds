@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
     public static void LoadScene(int sceneToLoad = 0, bool loadCurrentScene = false, bool loadNextScene = false)
     {
         int currentIndex = SceneManager.GetActiveScene().buildIndex;
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
         int targetIndex;
 
         if (loadCurrentScene)
@@ -24,6 +25,11 @@ public class SceneLoader : MonoBehaviour
             targetIndex = sceneToLoad >= 0
                 ? sceneToLoad
                 : currentIndex;
+        }
+
+        if (targetIndex < 0 || targetIndex >= sceneCount)
+        {
+            targetIndex = 1;
         }
 
         TimeManager.ChangeTimeScale(1f);
