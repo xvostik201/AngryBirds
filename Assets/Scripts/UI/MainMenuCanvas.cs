@@ -19,8 +19,8 @@ public class MainMenuCanvas : BaseScreen
 
     private void Start()
     {
+        _exitButton.onClick.AddListener(() => Application.Quit());
         SetupReload(_playButton, 1);  
-        SetupReload(_exitButton, 0);   
         SetupMute(_muteButton, _muteImage, _muteOff, _muteOn);
     }
 }
